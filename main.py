@@ -1,15 +1,15 @@
+from Blockchain import Blockchain
 from Block import Block
 
-blockchain = []
+if __name__ == "__main__":
 
-genesis_block = Block("The first block!", ["Ben sent 1 nugget to Jeff", "Mario sent 2 nuggets to Luigi"])
-print("Genesis block hash: ", genesis_block.block_hash)
+    blockchain = Blockchain()
 
-second_block = Block(genesis_block.block_hash, ["Mike sent  nuggets 50 to Ben", "Smith sent 10 nuggets to Mario"])
+    # Adding blocks to the chain
+    blockchain.add_block("the big Block")
 
-print("second block hash: ", second_block.block_hash)
+    blockchain.save_blockchain_to_file()
 
-third_block = Block(second_block.block_hash, ["John sent 5 nuggets to Ben", "Ben sent 7 nuggets to Mike"])
-
-print("third block hash: ", third_block.block_hash)
-
+    # Displaying the blockchain
+    for block in blockchain.chain:
+        print(f"Block Hash {block.id}: {block.hash}")
